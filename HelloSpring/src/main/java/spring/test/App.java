@@ -1,6 +1,7 @@
 package spring.test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
+import org.springframework.jdbc.core.JdbcTemplate;
 /**
  * Hello world!
  *
