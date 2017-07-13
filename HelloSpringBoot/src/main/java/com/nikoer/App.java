@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 /**
  * Hello world!
  *
@@ -11,9 +13,20 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomi
 @SpringBootApplication
 public class App implements EmbeddedServletContainerCustomizer
 {
+	public final static String CHINESE = "Chinese";
+	public final static String AMERICAN = "American";
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
+        ApplicationContext ctx = new FileSystemXmlApplicationContext("bean.xml");
+        Human human = null;
+        human = (Human) ctx.getBean(CHINESE);
+        human.eat();
+        human.walk();
+        human = (Human) ctx.getBean(AMERICAN);
+        human.eat();
+        human.walk();
+        
         SpringApplication.run(App.class, args);
     }
     @Override
