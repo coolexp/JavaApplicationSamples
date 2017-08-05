@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import redis.clients.jedis.Jedis;
+
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
@@ -46,7 +48,18 @@ public class HelloAICarb extends HttpServlet {
 		if(username!=null){
 			insertUsers(username);
 		}
-		response.getWriter().write("Hello aicarb");
+		response.getWriter().write("Hello aicarb\n");
+		Jedis jedis = new Jedis("localhost");
+		try {
+			String value = jedis.get("foo");
+			response.getWriter().write("foo"+value);
+		} catch (Exception e) {
+			// TODO: handle exception
+			response.getWriter().write("foo error");
+		}finally{
+			jedis.close();
+		}
+		
 		response.getWriter().flush();
 	}
 	private void insertUsers(String userName){
