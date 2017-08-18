@@ -1,0 +1,9 @@
+syntax = "proto3";
+package awesomepackage;
+option java_package = "com.nikoer";
+option java_outer_classname = "ChildInfoData";
+ 
+message ChildInfo {
+    string name = 1;// 名字
+    int32 age = 2;
+}

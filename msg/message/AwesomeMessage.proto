@@ -1,0 +1,13 @@
+syntax = "proto3";
+package awesomepackage;
+option java_package = "com.nikoer";
+option java_outer_classname = "AwesomeMessageData";
+
+import "ChildInfo.proto";
+
+message AwesomeMessage {
+    string username = 1; // 用户名
+    string password = 2; // 密码
+    int32 sex = 3; // 性别
+    ChildInfo child = 4;
+}
