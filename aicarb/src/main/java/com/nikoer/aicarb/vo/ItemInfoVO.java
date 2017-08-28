@@ -1,4 +1,4 @@
-package com.nikoer.aicarb;
+package com.nikoer.aicarb.vo;
 
 public class ItemInfoVO {
 	private String itemName;

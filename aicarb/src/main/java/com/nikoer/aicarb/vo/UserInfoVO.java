@@ -1,4 +1,4 @@
-package com.nikoer.aicarb;
+package com.nikoer.aicarb.vo;
 
 import java.util.ArrayList;
 import java.util.List;
