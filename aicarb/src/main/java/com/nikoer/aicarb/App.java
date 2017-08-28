@@ -23,6 +23,15 @@ public class App
         UserInfoVO v = Utils.readValue(Utils.toJson(vo), UserInfoVO.class);
         System.out.println(v.getName() );
         App.testHtml();
+        App.testAccount();
+        do {
+        	try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }while(true);
     }
     private static void testHtml() {
     	String html = "<html><head><title> 开源中国社区 </title></head>"
@@ -41,5 +50,16 @@ public class App
 		}
         String title = doc.body().toString();
         System.out.println(title);
+    }
+    private static void testAccount() {
+    	Account account = new Account("zhang san", 10000.0f);
+    	AccountOperator accountOperator = new AccountOperator(account);
+
+    	final int THREAD_NUM = 5;
+    	Thread threads[] = new Thread[THREAD_NUM];
+    	for (int i = 0; i < THREAD_NUM; i ++) {
+    	   threads[i] = new Thread(accountOperator, "Thread" + i);
+    	   threads[i].start();
+    	}
     }
 }
