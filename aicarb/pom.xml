@@ -66,7 +66,27 @@
 	    <artifactId>protobuf-java-util</artifactId>
 	    <version>3.4.0</version>
 	</dependency>
-	 
+	 <dependency>
+         <groupId>org.quartz-scheduler</groupId>
+         <artifactId>quartz</artifactId>
+         <version>1.8.5</version>
+     </dependency>
+        
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-tx</artifactId>
+          <version>3.1.1.RELEASE</version>
+      </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>3.1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>3.1.1.RELEASE</version>
+        </dependency>
   </dependencies>
   <repositories>
 	  <repository>

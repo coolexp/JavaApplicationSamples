@@ -10,10 +10,17 @@ import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +35,7 @@ import com.nikoer.vo.ChildInfoData;
  */
 @RestController
 @EnableAutoConfiguration
+@ComponentScan(basePackages = {"com.nikoer.aicarb"})
 public class App 
 {
     private static HashMap<String,UserInfoVO> map = new HashMap<String,UserInfoVO>();
@@ -37,7 +45,11 @@ public class App
         return "Hello World!";
     }
 
-    
+    @Autowired
+    private ScheduledTasks scheduledTasks;
+    public void init() {
+    	scheduledTasks.reportCurrentByCron();
+    }
     public static void main( String[] args )
     {
     	System.out.println(System.currentTimeMillis());
@@ -64,9 +76,13 @@ public class App
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        //System.out.println(child.build().toString());
         
+        //System.out.println(child.build().toString());
+        //ApplicationContext ctx = new FileSystemXmlApplicationContext("quartz-config.xml");
+        //如果配置文件中将startQuertz bean的lazy-init设置为false 则不用实例化
+        //context.getBean("startQuertz");
         SpringApplication.run(App.class, args);
+        new App().init();
 //        StringBuilder val = new StringBuilder();
 //        App.testValue(val);
 //        System.out.println(val);
