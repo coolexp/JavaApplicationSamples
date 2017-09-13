@@ -19,4 +19,13 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 			<value>.jsp</value>
 		</property>
 	</bean>
+	
+	<bean id="timeBasedAccessInterceptor" class="com.aicarb.adapter.ControllerInterceptor"></bean>     
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">     
+	    <property name="interceptors">     
+	        <list>     
+	            <ref bean="timeBasedAccessInterceptor"/>     
+	        </list>     
+	    </property>     
+	</bean> 
 </beans>

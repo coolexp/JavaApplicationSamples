@@ -14,7 +14,8 @@ public class HTMLController {
 	public String hi(){
 		User user = new User();
 		user.setName("sloppy");
-//		JSON.parseObject(jsonString, user.class);
-		return JSON.toJSONString(user);
+		String json = JSON.toJSONString(user);
+		User u = JSON.parseObject(json, User.class);
+		return json;
 	}
 }
