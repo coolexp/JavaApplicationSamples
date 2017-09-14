@@ -29,6 +29,10 @@ public class ControllerInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("ControllerInterceptor.preHandle()");
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type");  
+        response.setHeader("Access-Control-Allow-Methods", "GET,POST");  
+        response.setHeader("Allow", "GET");  
 		return super.preHandle(request, response, handler);
 	}
 
